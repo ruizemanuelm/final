@@ -1,24 +1,24 @@
 "use client";
-import { IconSearch } from "@tabler/icons-react";
-import { Autocomplete, Burger, Group, Drawer, Button } from "@mantine/core";
+import { usePathname } from "next/navigation";
+import { Burger, Group, Drawer, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./nav.module.css";
 
 const links = [
-  { link: "/", label: "Inicio" },
+  { link: "/inicio", label: "Inicio" },
   { link: "/productos", label: "Productos" },
-  { link: "#", label: "Carrito" },
   { link: "/contactos", label: "Contactanos" },
 ];
 
 export function Navbar() {
   const [opened, { toggle, close }] = useDisclosure(false);
+  const pathname = usePathname();
 
   const items = links.map((link) => (
     <a
       key={link.label}
       href={link.link}
-      className={classes.link}
+      className={`${classes.link} ${pathname === link.link ? classes.active : ""}`} // Agrega la clase activa si está en esa página
       onClick={close} 
     >
       {link.label}

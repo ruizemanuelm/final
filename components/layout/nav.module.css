@@ -1,8 +1,9 @@
 .header {
     height: 56px;
-    background-color: var(--mantine-color-grape-9);
+    background-color: var(--mantine-color-body);
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
+    border-bottom: 1px solid var(--mantine-color-grape-3);
   }
   
   .inner {
@@ -26,3 +27,19 @@
       background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
     }
   }
+
+  .link {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .active {
+    color: var(--mantine-color-grape-6); /* Color grape de Mantine */
+  }
+  

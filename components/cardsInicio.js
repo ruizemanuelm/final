@@ -49,7 +49,7 @@ export function CardsInicio() {
       <Text h={"80%"} className={classes.title} mt={5}>
         {article.title}
       </Text>
-      <Text ta={"end"} c="green" size="md" fw={700} mt="md">
+      <Text ta={"end"} c="grape" size="md" fw={700} mt="md">
         {article.precio}
       </Text>
     </Card>

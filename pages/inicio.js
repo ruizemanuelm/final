@@ -35,12 +35,7 @@ export default function Landing() {
             Ver todas
           </Button>
         </Flex>
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="md" my={20}>
           <Categorias />
-          <Categorias />
-          <Categorias />
-          <Categorias />
-        </SimpleGrid>
       </Container>
       <Divider my={30} label="Métodos de pago" labelPosition="center" />
       <Title my={30} ta={"center"} order={1}>

@@ -7,15 +7,20 @@ import { useRef } from "react";
 
 const mockdata = [
   {
-    image: "/images/slider/slider1.jpg",
+    image: "/images/slider/slider4.jpg",
     title: "Slide 1",
-    description: "Description for slide 1",
+    description: "",
+  },
+  {
+    image: "/images/slider/slider3.jpg",
+    title: "Slide 2",
+    description: "",
   },
   
   {
-    image: "/images/slider/slider2.jpg",
+    image: "/images/slider/setup.png",
     title: "Slide 3",
-    description: "Description for slide 3",
+    description: "",
   },
 ];
 

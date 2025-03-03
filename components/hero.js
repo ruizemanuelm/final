@@ -14,9 +14,6 @@ export function Hero() {
       <Text size="sm" fz={15} className={classes.description}>
       Configurá tu nueva PC sin errores de compatibilidad, seleccionando todos los componentes que deseás.</Text>
 
-      <Button className={classes.action} variant="white" color="dark" size="md">
-        Ver mas
-      </Button>
     </div>
   </Card>
   );
