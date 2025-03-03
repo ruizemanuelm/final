@@ -1,0 +1,27 @@
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.colorLine {
+  display: flex;
+  width: 100%;
+  height: 5px;
+}
+
+.colorLine::before {
+  content: "";
+  flex: 1;
+  background-color: #E1A113;
+}
+
+.colorLine::after {
+  content: "";
+  flex: 1;
+  background-color: #004B81;
+}
+
+.colorLine div {
+  flex: 1;
+  background-color: #971B2F;
+}

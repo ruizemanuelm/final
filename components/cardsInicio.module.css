@@ -1,0 +1,19 @@
+.card {
+    transition:
+      transform 150ms ease,
+      box-shadow 150ms ease;
+  
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 1px 8px var(--mantine-color-blue-3);
+
+
+    }
+  }
+  
+  .title {
+    font-weight: bold;
+  }
+  .precio {
+    margin-top: auto;
+  }
