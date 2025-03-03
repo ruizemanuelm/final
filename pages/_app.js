@@ -9,6 +9,7 @@ const quicksand = Quicksand({
 
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Navbar } from '../components/layout/nav';
+import { FooterSocial } from '../components/layout/footer';
 
 const theme = createTheme({
   fontFamily: quicksand.style.fontFamily,
@@ -23,9 +24,13 @@ const theme = createTheme({
 
 export default function App({ Component, pageProps }) {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <Navbar/>
+      <div className='main'>
+
       <Component {...pageProps} />
+      </div>
+      <FooterSocial/>
     </MantineProvider>
   );
 }

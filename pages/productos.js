@@ -1,13 +1,17 @@
 import React from "react";
-import { Navbar } from "../components/layout/nav";
-import { Text, Title } from "@mantine/core";
+import { Tabs, Text, Title } from "@mantine/core";
 
 const Productos = () => {
   
   return (
     <>
-        <Title>Productos</Title>
-        <Text>Productos destacados</Text>
+        <Tabs variant="pills" defaultValue="first"  my={20}>
+      <Tabs.List grow justify="center">
+        <Tabs.Tab value="first">First tab</Tabs.Tab>
+        <Tabs.Tab value="second">Second tab</Tabs.Tab>
+        <Tabs.Tab value="third">Third tab</Tabs.Tab>
+      </Tabs.List>
+    </Tabs>
     </>
   );
 };

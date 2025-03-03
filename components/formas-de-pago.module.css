@@ -8,14 +8,14 @@
   }
 
   .title {
-    color: var(--mantine-color-blue-9);
+    color: var(--mantine-color-grape-9);
     text-transform: uppercase;
     font-weight: 700;
     font-size: var(--mantine-font-size-sm);
   }
 
   .description {
-    color: var(--mantine-color-azul-2);
+    color: var(--mantine-color-grape-2);
     font-size: var(--mantine-font-size-sm);
     margin-top: 5px;
   }
@@ -26,7 +26,7 @@
     & + & {
       padding-left: var(--mantine-spacing-xl);
       margin-left: var(--mantine-spacing-xl);
-      border-left: 1px solid var(--mantine-color-azul-5);
+      border-left: 1px solid var(--mantine-color-grape-9);
 
       @media (max-width: 768px) {
         padding-left: 0;

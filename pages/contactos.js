@@ -21,7 +21,7 @@ const Contactos = () => {
       alt="Contacto"
       h={260}
     />
-    <Container size="lg" mt={20}>
+    <Container my={30} size="lg" mt={20}>
       <Paper shadow="md" radius="lg">
         <div className={classes.wrapper}>
 
