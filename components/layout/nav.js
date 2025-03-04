@@ -40,7 +40,7 @@ export function Navbar() {
 
         {/* Campo de búsqueda */}
         <Group visibleFrom="sm">
-            <Button variant="default">Iniciar sesión</Button>
+            <Button variant="default" component="a" href="/login" >Iniciar sesión</Button>
           </Group>
 
         <Drawer
@@ -51,6 +51,9 @@ export function Navbar() {
           hiddenFrom="sm"
         >
           {items}
+          <Group mt={50}>
+            <Button variant="default" fullWidth component="a" href="/login" >Iniciar sesión</Button>
+          </Group>
         </Drawer>
       </div>
     </header>

@@ -1,54 +1,31 @@
 import { Card, Group, SimpleGrid, Text } from '@mantine/core';
 import classes from './categorias.module.css';
+import { use, useEffect, useState } from 'react';
 
-const categorias = [
-  {
-    titulo: 'Procesadores',
-    imagen: '/images/categorias/procesadores.jpg',
-    enlace: '/productos?tab=procesadores', 
-  },
-  {
-    titulo: 'Monitores',
-    imagen: '/images/categorias/monitor.jfif',
-    enlace: '/productos?tab=monitores',
-  },
-  {
-    titulo: 'Teclados',
-    imagen: '/images/categorias/teclado.jfif',
-    enlace: './productos?tab=teclados',
-  },
-  {
-    titulo: 'Mouses',
-    imagen: '/images/categorias/mouse.jfif',
-    enlace: '/productos?tab=mouse',
-  },
-  {
-    titulo: 'Notebooks',
-    imagen: '/images/categorias/Notebook.jpg',
-    enlace: '/productos?tab=notebooks',
-  },
-  {
-    titulo: 'Auriculares',
-    imagen: '/images/categorias/auriculares.jfif',
-    enlace: '/productos?tab=auriculares',
-  },
-  {
-    titulo: 'Gabinetes',
-    imagen: '/images/categorias/gabinete.jfif',
-    enlace: '/productos?tab=gabinetes',
-  },
-  {
-    titulo: 'Almacenamiento',
-    imagen: '/images/categorias/ram.jfif',
-    enlace: '/productos?tab=almacenamiento',
-  },
-];
 
 export function Categorias() {
+  const [categorias , setCategorias] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/categories");
+        const data = await response.json();
+        setCategorias(data);
+      } catch (error) {
+        console.log("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+console.log("categorias:", categorias);
+
   return (
     <SimpleGrid cols={{ base: 1,sm:2, md: 4 }} gap="lg">
       {categorias.map((categoria, index) => (
         <Card
+        display={categoria.titulo == "Almacenamiento" ? "none": "block"}
           key={index}
           p="lg"
           shadow="lg"

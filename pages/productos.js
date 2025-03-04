@@ -7,6 +7,38 @@ import { useRouter } from "next/router";
 const Productos = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("monitores");
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/products");
+        if (!response.ok) {
+          throw new Error("No se pudieron obtener los productos");
+        }
+        const data = await response.json();
+        setProductos(data);
+      } catch (error) {
+        console.error("Error al obtener los productos:", error);
+      }
+    };
+
+    fetchProductos();
+  }, []);
+
+ // Función que verifica si hay productos para la categoría activa
+ const getFilteredProducts = () => {
+  if (productos.length > 0) {
+    return productos.filter(
+      (product) => product.categoria.titulo.toLowerCase() === activeTab
+    );
+  } else {
+    return []; // Si no hay productos, retorna un array vacío
+  }
+};
+
+const filteredProducts = getFilteredProducts();   
 
   useEffect(() => {
     const { tab } = router.query;
@@ -14,37 +46,6 @@ const Productos = () => {
       setActiveTab(tab);
     }
   }, [router.query]);
-
-  const monitores = [
-    {
-      id: 1,
-      imagen: "../images/destacados/Monitor_Lenovo_ThinkVision.jpg", // Reemplaza con una URL real
-      titulo: "Monitor Gamer 27'' 144Hz",
-      descripcion: "Monitor Full HD con tecnología IPS y tasa de refresco de 144Hz.",
-      precio: "$110.250",
-    },
-    {
-      id: 2,
-      imagen: "https://via.placeholder.com/200",
-      titulo: "Monitor Ultrawide 34''",
-      descripcion: "Pantalla curva con resolución 3440x1440 y tecnología HDR.",
-      precio: "$151.100",
-    },
-    {
-      id: 3,
-      imagen: "https://via.placeholder.com/200",
-      titulo: "Monitor 4K 32''",
-      descripcion: "Ideal para edición de video y diseño gráfico con resolución UHD.",
-      precio: "$98.000",
-    },
-    {
-      id: 4,
-      imagen: "https://via.placeholder.com/200",
-      titulo: "Monitor Oficina 24''",
-      descripcion: "Pantalla LED Full HD con diseño sin bordes.",
-      precio: "$180.000",
-    },
-  ];
 
   return (
     <Tabs color="grape.9" variant="default" value={activeTab} my={50}>
@@ -65,8 +66,8 @@ const Productos = () => {
         <Text ta={"center"}>Aquí puedes encontrar los mejores monitores para gaming y trabajo.</Text>
         <Container size={"xl"} my={20}>
           <SimpleGrid cols={4}>
-            {monitores.map((monitor) => (
-              <CardProductos key={monitor.id} {...monitor} />
+          {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
             ))}
           </SimpleGrid>
         </Container>
@@ -75,38 +76,94 @@ const Productos = () => {
       <Tabs.Panel value="gabinetes">
         <Title ta={"center"} order={3}>Gabinetes</Title>
         <Text ta={"center"}>Explora nuestra variedad de gabinetes para PC.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
 
       <Tabs.Panel value="memorias-ram">
       <Title ta={"center"} order={3}>Memorias Ram</Title>
       <Text ta={"center"}>Encuentra las mejores memorias RAM para tu PC.</Text>
+      <Container size="xl" my={20}>
+        <SimpleGrid cols={4}>
+          {filteredProducts.map((product) => (
+            <CardProductos key={product._id} {...product} />
+          ))}
+        </SimpleGrid>
+      </Container>
     </Tabs.Panel>
 
       <Tabs.Panel value="procesadores">
         <Title ta={"center"} order={3}>Procesadores</Title>
         <Text ta={"center"}>Encuentra procesadores potentes para tu PC.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
 
       <Tabs.Panel value="teclados">
         <Title ta={"center"} order={3}>Teclados</Title>
         <Text ta={"center"}>Teclados mecánicos, inalámbricos y más.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
 
       <Tabs.Panel value="mouse">
-        <Title ta={"center"} order={3}>Mouse</Title>
+        <Title ta={"center"} order={3}>Mouses</Title>
         <Text ta={"center"}>Mouse ergonómicos y de alto rendimiento para gaming y oficina.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
       <Tabs.Panel value="auriculares">
         <Title ta={"center"} order={3}>Auriculares</Title>
         <Text ta={"center"}>Auriculares de alta calidad para gaming y música.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
       <Tabs.Panel value="notebooks">
         <Title ta={"center"} order={3}>Notebooks</Title>
         <Text ta={"center"}>Encuentra notebooks de última generación.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
       <Tabs.Panel value="almacenamiento">
         <Title ta={"center"} order={3}>Almacenamiento</Title>
         <Text ta={"center"}>Almacenamiento SSD, HDD y más.</Text>
+        <Container size="xl" my={20}>
+          <SimpleGrid cols={4}>
+            {filteredProducts.map((product) => (
+              <CardProductos key={product._id} {...product} />
+            ))}
+          </SimpleGrid>
+        </Container>
       </Tabs.Panel>
     </Tabs>
   );
