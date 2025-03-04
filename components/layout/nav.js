@@ -4,6 +4,7 @@ import { Burger, Group, Drawer, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./nav.module.css";
 
+
 const links = [
   { link: "/inicio", label: "Inicio" },
   { link: "/productos", label: "Productos" },

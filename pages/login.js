@@ -12,11 +12,13 @@ import {
 } from "@mantine/core";
 import classes from "./login.module.css";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [contrasena, setcontrasena] = useState("");
+  const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   console.log("error:", error);
 
@@ -36,7 +38,10 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Login exitoso:", data);
-        // Redirigir al usuario a otra página si es necesario
+
+        localStorage.setItem("user", JSON.stringify(data.usuario)); 
+
+        router.push("/"); 
       } else {
         setError(data.error || "Error al iniciar sesión");
       }
@@ -75,12 +80,13 @@ const Login = () => {
             label="Contraseña"
             mt="md"
             size="md"
-             value={contrasena}
-            onChange={(e) => setcontrasena(e.target.value)}
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
           />
           <Button fullWidth mt="xl" size="md" color={"grape"} onClick={handleLogin}>
             Iniciar sesión
           </Button>
+          {error && <Text color="red" ta="center" mt="md">{error}</Text>}
           <Text ta="center" mt="md">
             No tienes cuenta? <Anchor href="/register">Regístrate</Anchor>
           </Text>
