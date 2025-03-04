@@ -25,13 +25,13 @@ export default function Landing() {
         <CardsInicio />
       </Container>
       <Hero />
-      <Divider my={30} label="Categorías" labelPosition="center" />
+      <Divider my={20} label="Categorías" labelPosition="center" />
       <Container fluid>
-        <Flex justify={"space-between"} align={"center"}>
+        <Flex justify={"space-between"} align={"center"} mb={20}>
           <Title ta={"center"} order={1}>
             Categorías
           </Title>
-          <Button variant="filled" color="grape.9">
+          <Button variant="filled" color="grape.9" component="a" href="/productos">
             Ver todas
           </Button>
         </Flex>

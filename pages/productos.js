@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, SimpleGrid, Tabs, Text, Title } from "@mantine/core";
 import { CardProductos } from "../components/cardProductos";
+import { useRouter } from "next/router";
+
 
 const Productos = () => {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("monitores");
+
+  useEffect(() => {
+    const { tab } = router.query;
+    if (tab) {
+      setActiveTab(tab);
+    }
+  }, [router.query]);
+
   const monitores = [
     {
       id: 1,
@@ -35,19 +47,22 @@ const Productos = () => {
   ];
 
   return (
-    <Tabs color="grape.9" variant="default" defaultValue="monitores" my={50}>
+    <Tabs color="grape.9" variant="default" value={activeTab} my={50}>
       <Tabs.List grow justify="center" my={20}>
-        <Tabs.Tab value="monitores">Monitores</Tabs.Tab>
-        <Tabs.Tab value="gabinetes">Gabinetes</Tabs.Tab>
-        <Tabs.Tab value="tarjetas-graficas">Tarjetas Gráficas</Tabs.Tab>
-        <Tabs.Tab value="procesadores">Procesadores</Tabs.Tab>
-        <Tabs.Tab value="teclados">Teclados</Tabs.Tab>
-        <Tabs.Tab value="mouse">Mouse</Tabs.Tab>
+        <Tabs.Tab value="monitores" onClick={() => router.push('/productos?tab=monitores')}>Monitores</Tabs.Tab>
+        <Tabs.Tab value="gabinetes" onClick={() => router.push('/productos?tab=gabinetes')}>Gabinetes</Tabs.Tab>
+        <Tabs.Tab value="memorias-ram" onClick={() => router.push('/productos?tab=memorias-ram')}>Memorias ram</Tabs.Tab>
+        <Tabs.Tab value="procesadores" onClick={() => router.push('/productos?tab=procesadores')}> Procesadores</Tabs.Tab>
+        <Tabs.Tab value="teclados" onClick={() => router.push('/productos?tab=teclados')}> Teclados</Tabs.Tab>
+        <Tabs.Tab value="mouse" onClick={() => router.push('/productos?tab=mouse')}> Mouse</Tabs.Tab>
+        <Tabs.Tab value="auriculares" onClick={() => router.push('/productos?tab=auriculares')}>Auriculares</Tabs.Tab>
+        <Tabs.Tab value="notebooks" onClick={() => router.push('/productos?tab=notebooks')}>Notebook</Tabs.Tab>
+        <Tabs.Tab value="almacenamiento" onClick={() => router.push('/productos?tab=almacenamiento')}>Almacenamiento</Tabs.Tab>
       </Tabs.List>
 
       <Tabs.Panel value="monitores">
-        <Title order={3}>Monitores</Title>
-        <Text>Aquí puedes encontrar los mejores monitores para gaming y trabajo.</Text>
+        <Title ta={"center"} order={3}>Monitores</Title>
+        <Text ta={"center"}>Aquí puedes encontrar los mejores monitores para gaming y trabajo.</Text>
         <Container size={"xl"} my={20}>
           <SimpleGrid cols={4}>
             {monitores.map((monitor) => (
@@ -58,28 +73,40 @@ const Productos = () => {
       </Tabs.Panel>
 
       <Tabs.Panel value="gabinetes">
-        <Title order={3}>Gabinetes</Title>
-        <Text>Explora nuestra variedad de gabinetes para PC.</Text>
+        <Title ta={"center"} order={3}>Gabinetes</Title>
+        <Text ta={"center"}>Explora nuestra variedad de gabinetes para PC.</Text>
       </Tabs.Panel>
 
-      <Tabs.Panel value="tarjetas-graficas">
-        <Title order={3}>Tarjetas Gráficas</Title>
-        <Text>Descubre tarjetas gráficas de alto rendimiento para gaming y diseño.</Text>
-      </Tabs.Panel>
+      <Tabs.Panel value="memorias-ram">
+      <Title ta={"center"} order={3}>Memorias Ram</Title>
+      <Text ta={"center"}>Encuentra las mejores memorias RAM para tu PC.</Text>
+    </Tabs.Panel>
 
       <Tabs.Panel value="procesadores">
-        <Title order={3}>Procesadores</Title>
-        <Text>Encuentra procesadores potentes para tu PC.</Text>
+        <Title ta={"center"} order={3}>Procesadores</Title>
+        <Text ta={"center"}>Encuentra procesadores potentes para tu PC.</Text>
       </Tabs.Panel>
 
       <Tabs.Panel value="teclados">
-        <Title order={3}>Teclados</Title>
-        <Text>Teclados mecánicos, inalámbricos y más.</Text>
+        <Title ta={"center"} order={3}>Teclados</Title>
+        <Text ta={"center"}>Teclados mecánicos, inalámbricos y más.</Text>
       </Tabs.Panel>
 
       <Tabs.Panel value="mouse">
-        <Title order={3}>Mouse</Title>
-        <Text>Mouse ergonómicos y de alto rendimiento para gaming y oficina.</Text>
+        <Title ta={"center"} order={3}>Mouse</Title>
+        <Text ta={"center"}>Mouse ergonómicos y de alto rendimiento para gaming y oficina.</Text>
+      </Tabs.Panel>
+      <Tabs.Panel value="auriculares">
+        <Title ta={"center"} order={3}>Auriculares</Title>
+        <Text ta={"center"}>Auriculares de alta calidad para gaming y música.</Text>
+      </Tabs.Panel>
+      <Tabs.Panel value="notebooks">
+        <Title ta={"center"} order={3}>Notebooks</Title>
+        <Text ta={"center"}>Encuentra notebooks de última generación.</Text>
+      </Tabs.Panel>
+      <Tabs.Panel value="almacenamiento">
+        <Title ta={"center"} order={3}>Almacenamiento</Title>
+        <Text ta={"center"}>Almacenamiento SSD, HDD y más.</Text>
       </Tabs.Panel>
     </Tabs>
   );

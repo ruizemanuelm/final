@@ -5,42 +5,42 @@ const categorias = [
   {
     titulo: 'Procesadores',
     imagen: '/images/categorias/procesadores.jpg',
-    enlace: 'https://mantine.dev/',
+    enlace: '/productos?tab=procesadores', 
   },
   {
     titulo: 'Monitores',
     imagen: '/images/categorias/monitor.jfif',
-    enlace: 'https://mantine.dev/',
+    enlace: '/productos?tab=monitores',
   },
   {
     titulo: 'Teclados',
     imagen: '/images/categorias/teclado.jfif',
-    enlace: 'https://mantine.dev/',
+    enlace: './productos?tab=teclados',
   },
   {
     titulo: 'Mouses',
     imagen: '/images/categorias/mouse.jfif',
-    enlace: 'XXXXXXXXXXXXXXXXXXXX',
+    enlace: '/productos?tab=mouse',
   },
   {
     titulo: 'Notebooks',
     imagen: '/images/categorias/Notebook.jpg',
-    enlace: 'XXXXXXXXXXXXXXXXXXXX',
+    enlace: '/productos?tab=notebooks',
   },
   {
     titulo: 'Auriculares',
     imagen: '/images/categorias/auriculares.jfif',
-    enlace: 'XXXXXXXXXXXXXXXXXXXX',
+    enlace: '/productos?tab=auriculares',
   },
   {
     titulo: 'Gabinetes',
     imagen: '/images/categorias/gabinete.jfif',
-    enlace: 'XXXXXXXXXXXXXXXXXXXX',
+    enlace: '/productos?tab=gabinetes',
   },
   {
     titulo: 'Almacenamiento',
     imagen: '/images/categorias/ram.jfif',
-    enlace: 'XXXXXXXXXXXXXXXXXXXX',
+    enlace: '/productos?tab=almacenamiento',
   },
 ];
 
@@ -56,7 +56,6 @@ export function Categorias() {
           radius="md"
           component="a"
           href={categoria.enlace}
-          target="_blank"
         >
           <div
             className={classes.image}
