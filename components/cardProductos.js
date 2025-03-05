@@ -11,38 +11,30 @@ import {
 } from "@mantine/core";
 import classes from "./cardProductos.module.css";
 
-export function CardProductos({ imagen, titulo, descripcion, precio }) {
+export function CardProductos({_id, imagen, nombre, descripcion, precio }) {
   const theme = useMantineTheme();
 
   return (
     <Card withBorder radius="md" className={classes.card}>
       {/* Sección de imagen */}
       <Card.Section p={10} className={classes.image}>
-        <Image src={imagen} height={180} alt={titulo} />
+        <Image src={imagen} height={180} alt={nombre} />
       </Card.Section>
 
-      {/* Badge de categoría */}
-      <Badge
-        variant="gradient"
-        gradient={{ from: "grape", to: "pink" }}
-        className={classes.rating}
-      >
-        Nuevo
-      </Badge>
 
       {/* Título del producto */}
       <Text fw={500} fz="lg" mt="sm" className={classes.title}>
-        {titulo}
+        {nombre}
       </Text>
 
       {/* Descripción con truncado de texto */}
-      <Text fz="sm" c="dimmed" lineClamp={3} mt="xs" className={classes.description}>
+      <Text h={"100%"} fz="sm" c="dimmed" lineClamp={3} mt="xs" className={classes.description}>
         {descripcion}
       </Text>
 
       {/* Footer con precio y acciones */}
       <Group justify="space-between" className={classes.footer} mt="md">
-        {/* Precio */}
+        {/* Precio */} 
         <Text fw={700} fz="lg" color={theme.colors.grape[8]}>
           {precio}
         </Text>
@@ -55,7 +47,10 @@ export function CardProductos({ imagen, titulo, descripcion, precio }) {
           </Tooltip>
 
           <Tooltip label="Ver producto" withArrow>
-            <ActionIcon className={classes.action} variant="outline">
+            <ActionIcon className={classes.action} variant="outline"
+        
+             component="a" href={`./productos/${_id}`} 
+             > 
               <IconEye size={18} color={theme.colors.pink[4]} />
             </ActionIcon>
           </Tooltip>

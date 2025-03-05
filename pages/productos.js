@@ -47,15 +47,17 @@ const filteredProducts = getFilteredProducts();
     }
   }, [router.query]);
 
+  console.log(filteredProducts);
+  
   return (
     <Tabs color="grape.9" variant="default" value={activeTab} my={50}>
       <Tabs.List grow justify="center" my={20}>
         <Tabs.Tab value="monitores" onClick={() => router.push('/productos?tab=monitores')}>Monitores</Tabs.Tab>
         <Tabs.Tab value="gabinetes" onClick={() => router.push('/productos?tab=gabinetes')}>Gabinetes</Tabs.Tab>
-        <Tabs.Tab value="memorias-ram" onClick={() => router.push('/productos?tab=memorias-ram')}>Memorias ram</Tabs.Tab>
+        <Tabs.Tab value="memorias ram" onClick={() => router.push('/productos?tab=memorias ram')}>Memorias ram</Tabs.Tab>
         <Tabs.Tab value="procesadores" onClick={() => router.push('/productos?tab=procesadores')}> Procesadores</Tabs.Tab>
         <Tabs.Tab value="teclados" onClick={() => router.push('/productos?tab=teclados')}> Teclados</Tabs.Tab>
-        <Tabs.Tab value="mouse" onClick={() => router.push('/productos?tab=mouse')}> Mouse</Tabs.Tab>
+        <Tabs.Tab value="mouses" onClick={() => router.push('/productos?tab=mouses')}> Mouse</Tabs.Tab>
         <Tabs.Tab value="auriculares" onClick={() => router.push('/productos?tab=auriculares')}>Auriculares</Tabs.Tab>
         <Tabs.Tab value="notebooks" onClick={() => router.push('/productos?tab=notebooks')}>Notebook</Tabs.Tab>
         <Tabs.Tab value="almacenamiento" onClick={() => router.push('/productos?tab=almacenamiento')}>Almacenamiento</Tabs.Tab>
@@ -65,7 +67,7 @@ const filteredProducts = getFilteredProducts();
         <Title ta={"center"} order={3}>Monitores</Title>
         <Text ta={"center"}>Aquí puedes encontrar los mejores monitores para gaming y trabajo.</Text>
         <Container size={"xl"} my={20}>
-          <SimpleGrid cols={4}>
+          <SimpleGrid cols={{base:1, sm:2, md:4}}>
           {filteredProducts.map((product) => (
               <CardProductos key={product._id} {...product} />
             ))}
@@ -85,7 +87,7 @@ const filteredProducts = getFilteredProducts();
         </Container>
       </Tabs.Panel>
 
-      <Tabs.Panel value="memorias-ram">
+      <Tabs.Panel value="memorias ram">
       <Title ta={"center"} order={3}>Memorias Ram</Title>
       <Text ta={"center"}>Encuentra las mejores memorias RAM para tu PC.</Text>
       <Container size="xl" my={20}>
@@ -121,7 +123,7 @@ const filteredProducts = getFilteredProducts();
         </Container>
       </Tabs.Panel>
 
-      <Tabs.Panel value="mouse">
+      <Tabs.Panel value="mouses">
         <Title ta={"center"} order={3}>Mouses</Title>
         <Text ta={"center"}>Mouse ergonómicos y de alto rendimiento para gaming y oficina.</Text>
         <Container size="xl" my={20}>

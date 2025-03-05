@@ -13,41 +13,52 @@ import {
 import classes from "./login.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { signIn, useSession } from "next-auth/react";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(null);
   const router = useRouter();
+  const { data: session } = useSession();
 
-  console.log("error:", error);
+  if (session) {
+    router.push("/"); // Redirige si ya está autenticado
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, contrasena }),
+  
+    // Intenta iniciar sesión
+    const result = await signIn("credentials", {
+      redirect: false,
+      email,
+      contrasena,
+    });
+  
+    // Si hay un error en el login
+    if (result.error) {
+      setError("Error al iniciar sesión");
+  
+      // Muestra una alerta de error con SweetAlert2
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un problema al iniciar sesión. Verifica tus datos.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Login exitoso:", data);
-
-        localStorage.setItem("user", JSON.stringify(data.usuario)); 
-
-        router.push("/"); 
-      } else {
-        setError(data.error || "Error al iniciar sesión");
-      }
-    } catch (error) {
-      console.error("Error al conectar con el backend:", error);
-      setError("Error al conectar con el backend");
+    } else {
+      // Si el login es exitoso, redirige al usuario
+      router.push("/");
+  
+      // Muestra una alerta de éxito con SweetAlert2
+      Swal.fire({
+        title: "Bienvenido",
+        text: "Has iniciado sesión con éxito.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -57,7 +68,7 @@ const Login = () => {
       cols={{ base: 1, md: 2 }}
       align="center"
     >
-      <Image visibleFrom="md" src="/images/log.jpg" alt="Login" fit="cover" h={"auto"} />
+      <Image visibleFrom="md" src="/images/logo.jpeg" alt="Login" fit="cover" h={"auto"} />
       <Center>
         <Paper className={classes.form} radius={0} p={30}>
           <Title

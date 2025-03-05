@@ -1,22 +1,31 @@
-import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons-react';
-import { ActionIcon, Container, Group, Text } from '@mantine/core';
-import classes from './FooterSocial.module.css';
+import {
+  IconBrandInstagram,
+  IconBrandTwitter,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
+import { ActionIcon, Container, Group, Image, Text } from "@mantine/core";
+import classes from "./FooterSocial.module.css";
 
 export function FooterSocial() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
         {/* <MantineLogo size={28} /> */}
-        <Text > logo</Text>
-        <Group gap={0} className={classes.links} justify="flex-end" wrap="nowrap">
+        <Image src="/images/logopng.png" alt="Login" width={70} height={70} />
+        <Group
+          gap={20}
+          className={classes.links}
+          justify="flex-end"
+          wrap="nowrap"
+        >
           <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandTwitter size={18} stroke={1.5} />
+            <IconBrandTwitter size={50} stroke={1.5} />
           </ActionIcon>
           <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandYoutube size={18} stroke={1.5} />
+            <IconBrandYoutube size={50} stroke={1.5} />
           </ActionIcon>
           <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandInstagram size={18} stroke={1.5} />
+            <IconBrandInstagram size={50} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>
