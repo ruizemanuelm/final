@@ -11,16 +11,21 @@ import {
 } from "@mantine/core";
 import classes from "./cardProductos.module.css";
 
-export function CardProductos({_id, imagen, nombre, descripcion, precio }) {
+export function CardProductos({
+  _id,
+  imagen,
+  nombre,
+  descripcion,
+  precio,
+  agregarAlCarrito,  // Recibe la función como prop
+}) {
   const theme = useMantineTheme();
-
   return (
     <Card withBorder radius="md" className={classes.card}>
       {/* Sección de imagen */}
       <Card.Section p={10} className={classes.image}>
         <Image src={imagen} height={180} alt={nombre} />
       </Card.Section>
-
 
       {/* Título del producto */}
       <Text fw={500} fz="lg" mt="sm" className={classes.title}>
@@ -41,16 +46,17 @@ export function CardProductos({_id, imagen, nombre, descripcion, precio }) {
         {/* Acciones con Tooltips */}
         <Group gap={8} mr={0}>
           <Tooltip label="Agregar al carrito" withArrow>
-            <ActionIcon className={classes.action} variant="outline">
+            <ActionIcon
+              className={classes.action}
+              variant="outline"
+              onClick={() => agregarAlCarrito({ _id, imagen, nombre, descripcion, precio })} // Aquí se llama a la función
+            >
               <IconShoppingCart size={18} color={theme.colors.grape[8]} />
             </ActionIcon>
           </Tooltip>
 
           <Tooltip label="Ver producto" withArrow>
-            <ActionIcon className={classes.action} variant="outline"
-        
-             component="a" href={`./productos/${_id}`} 
-             > 
+            <ActionIcon className={classes.action} variant="outline" component="a" href={`./productos/${_id}`}>
               <IconEye size={18} color={theme.colors.pink[4]} />
             </ActionIcon>
           </Tooltip>

@@ -18,13 +18,18 @@ import {
 import { Carousel } from "@mantine/carousel";
 import "@mantine/carousel/styles.css";
 import { IconCheck } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
+import Swal from "sweetalert2";
 
 const Ver = () => {
+  const { data: session } = useSession(); // Usar el hook dentro de un componente funcional
   const router = useRouter();
   const { ver } = router.query; // Captura el ID desde la URL
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const usuario = session?.user?.usuario;
+
 
   useEffect(() => {
     if (!ver) return; // Evita ejecutar la solicitud si el ID no está disponible
@@ -51,10 +56,38 @@ const Ver = () => {
     fetchProducto();
   }, [ver]);
 
-  console.log(producto);
-
   if (error) return <Text c="red">{error}</Text>;
   if (!producto) return <Text>No se encontró el producto</Text>;
+
+
+  const comprar = () => {
+    const usuario = session?.user?.usuario;
+
+    if (!usuario) {
+      // Si el usuario no está autenticado, mostrar SweetAlert
+      Swal.fire({
+        title: "¿Deseas iniciar sesión para comprar?",
+        text: "Para realizar la compra, necesitas estar logueado.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, ir al login",
+        confirmButtonColor: "#862e9c",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "No, seguir aquí",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Si elige "Sí", redirigir al login
+          router.push("/login");
+        } else {
+          // Si elige "No", quedarse en la misma página
+          Swal.fire("Permanezcas aquí", "Puedes seguir explorando el producto.", "info");
+        }
+      });
+    } else {
+      // Si el usuario está autenticado, proceder con la compra
+      router.push(`/compras/${producto._id}`);
+    }
+  };
 
   return (
     <>
@@ -111,11 +144,11 @@ const Ver = () => {
                     </List>
 
                     <Group mt={50}>
-                      <Button variant="default" radius="xs" size="md">
+                      <Button variant="default" radius="xs" size="md" component="a" href="../productos">
                         Cancelar
                       </Button>
-                      <Button radius="xs" size="md" color="grape.9">
-                        Agregar al carrito
+                      <Button radius="xs" size="md" color="grape.9" onClick={() => comprar()} >
+                        Comprar ahora
                       </Button>
                     </Group>
                   </div>
