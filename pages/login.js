@@ -50,7 +50,7 @@ const handleLogin = async (e) => {
     }
 
     // Guardar los datos del usuario en el localStorage
-    localStorage.setItem('user', JSON.stringify(data.user));  // Asumiendo que `data.user` contiene la info del usuario
+    localStorage.setItem('user', JSON.stringify(data.usuario));  // Asumiendo que `data.user` contiene la info del usuario
 
     // Mostrar alerta de éxito
     Swal.fire({
