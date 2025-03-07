@@ -11,10 +11,8 @@ import {
 } from "@mantine/core";
 import classes from "./contactos.module.css";
 import { ContactIconsList } from "../components/contactoslista";
-import { useSession } from "next-auth/react";
 
 const Contactos = () => {
-    const { data: session } = useSession();
   
   return (
     <>

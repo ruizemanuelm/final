@@ -13,7 +13,6 @@ import {
 import classes from "./login.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -21,7 +20,6 @@ const Login = () => {
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(null);
   const router = useRouter();
-  const { data: session } = useSession();
 
   if (session) {
     router.push("/"); // Redirige si ya está autenticado

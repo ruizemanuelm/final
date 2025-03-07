@@ -14,9 +14,9 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./nav.module.css";
-import { signOut, useSession } from "next-auth/react";
-import { IconChevronRight, IconLogout } from "@tabler/icons-react";
+import { IconLogout } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const links = [
   { link: "/inicio", label: "Inicio" },
@@ -34,31 +34,28 @@ export function Navbar() {
       href={link.link}
       className={`${classes.link} ${
         pathname === link.link ? classes.active : ""
-      }`} // Agrega la clase activa si está en esa página
+      }`}
       onClick={close}
     >
       {link.label}
     </a>
   ));
 
-  const { data: session } = useSession();
-
-  console.log("sess", session);
-  const usuario = session?.user?.usuario;
-
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser)); 
     }
-  }, []);
+  }, []); 
 
-const cerrarSesion = async () => {
-localStorage.removeItem("user");
-router.push("/login"); 
-};
+  const cerrarSesion = async () => {
+    localStorage.removeItem("user"); 
+    setUser(null); 
+    router.push("/login"); 
+  };
   return (
     <header className={classes.header}>
       <div className={classes.inner}>

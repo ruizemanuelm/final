@@ -16,17 +16,14 @@ import {
 import { Carousel } from "@mantine/carousel";
 import "@mantine/carousel/styles.css";
 import { IconCheck } from "@tabler/icons-react";
-import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
 const Ver = () => {
-  const { data: session } = useSession(); // Usar el hook dentro de un componente funcional
   const router = useRouter();
   const { ver } = router.query; // Captura el ID desde la URL
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const usuario = session?.user?.usuario;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const [user, setUser] = useState(null);
@@ -70,7 +67,6 @@ const Ver = () => {
 
 
   const comprar = () => {
-    const usuario = session?.user?.usuario;
 
     if (user == null) {
       // Si el usuario no está autenticado, mostrar SweetAlert

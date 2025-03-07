@@ -16,17 +16,15 @@ import { CardProductos } from "../components/cardProductos";
 import { useRouter } from "next/router";
 import { IconTrash } from "@tabler/icons-react";
 import Carrito from "./carrito";
-import { useSession } from "next-auth/react";
 
 const Productos = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("monitores");
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [carrito, setCarrito] = useState([]); // Estado para el carrito
-  const [carritoVisible, setCarritoVisible] = useState(false); // Estado para manejar la visibilidad del carrito
+  const [carrito, setCarrito] = useState([]); 
+  const [carritoVisible, setCarritoVisible] = useState(false);
 
-  const { data: session } = useSession();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
