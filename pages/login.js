@@ -26,48 +26,52 @@ const Login = () => {
   if (session) {
     router.push("/"); // Redirige si ya está autenticado
   }
+ 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const handleLogin = async (e) => {
-    e.preventDefault();
-  
-    try {
-      // Realiza el fetch hacia el backend
-      const response = await fetch(`${baseUrl}api/users/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          contrasena: contrasena,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (!response.ok) {
-        throw new Error(data.error || "Error al iniciar sesión");
-      }
-  
-      // Mostrar alerta de éxito
-      Swal.fire({
-        title: "Bienvenido",
-        text: "Has iniciado sesión con éxito.",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
-  
-      router.push("/");
-  
-    } catch (error) {
-      setError(error.message);
-        Swal.fire({
-        title: "Error",
-        text: error.message || "No se pudo iniciar sesión. Por favor, inténtalo de nuevo.",
-        icon: "error",
-        confirmButtonText: "Aceptar",
-      });
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    // Realiza el fetch hacia el backend
+    const response = await fetch(`${baseUrl}api/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        contrasena: contrasena,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Error al iniciar sesión");
     }
-  };
-  
+
+    // Guardar los datos del usuario en el localStorage
+    localStorage.setItem('user', JSON.stringify(data.user));  // Asumiendo que `data.user` contiene la info del usuario
+
+    // Mostrar alerta de éxito
+    Swal.fire({
+      title: "Bienvenido",
+      text: "Has iniciado sesión con éxito.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
+
+    router.push("/");
+
+  } catch (error) {
+    setError(error.message);
+    Swal.fire({
+      title: "Error",
+      text: error.message || "No se pudo iniciar sesión. Por favor, inténtalo de nuevo.",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+    });
+  }
+};
 
   return (
     <SimpleGrid
