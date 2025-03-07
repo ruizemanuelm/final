@@ -10,10 +10,8 @@ export default NextAuth({
         contrasena: { label: "Contraseña", type: "password" },
       },
       async authorize(credentials) {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
         try {
-          const res = await fetch(`${baseUrl}api/users/login`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(credentials),
@@ -37,8 +35,6 @@ export default NextAuth({
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: true, // Habilita logs en Vercel
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 días en segundos
