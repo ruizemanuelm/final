@@ -27,11 +27,12 @@ const Productos = () => {
   const [carritoVisible, setCarritoVisible] = useState(false); // Estado para manejar la visibilidad del carrito
 
   const { data: session } = useSession();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products");
+        const response = await fetch(`${baseUrl}/api/products`);
         if (!response.ok) {
           throw new Error("No se pudieron obtener los productos");
         }

@@ -35,11 +35,12 @@ import { useState } from "react";
   
     const [error, setError] = useState(null);
     const router = useRouter();
-  
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
     const handleRegister = async () => {
   
       try {
-        const response = await fetch("http://localhost:5000/api/users/register", {
+        const response = await fetch(`${baseUrl}/api/users/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(

@@ -29,6 +29,7 @@ const Ver = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const usuario = session?.user?.usuario;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Ver = () => {
     const fetchProducto = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/products/${ver}`
+          `${baseUrl}/api/products/${ver}`
         );
 
         if (!response.ok) {

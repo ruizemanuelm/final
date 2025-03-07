@@ -5,11 +5,11 @@ import { use, useEffect, useState } from 'react';
 
 export function Categorias() {
   const [categorias , setCategorias] = useState([]);
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/categories");
+        const response = await fetch(`${baseUrl}/api/categories`);
         const data = await response.json();
         setCategorias(data);
       } catch (error) {
