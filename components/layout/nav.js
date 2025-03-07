@@ -75,8 +75,6 @@ router.push("/login");
           visibleFrom="sm"
         />
         {/* Burger para abrir el menú en dispositivos pequeños */}
-
-        {/* Enlaces visibles en pantallas grandes */}
         <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
           {items}
         </Group>
