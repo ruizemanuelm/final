@@ -10,55 +10,45 @@ export default NextAuth({
         contrasena: { label: "Contraseña", type: "password" },
       },
       async authorize(credentials) {
-        try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
-          });
-
-          if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error(errorData.error || "Error en la autenticación");
-          }
-
-          const user = await res.json();
-          if (!user || !user.id || !user.email) {
-            throw new Error("Usuario no válido");
-          }
-
-          return user;
-        } catch (error) {
-          console.error("Error en login:", error.message);
-          throw new Error(error.message || "Error en el servidor");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credentials),
+        });
+        const user = await res.json();
+        
+        if (res.ok && user) {
+          return user;  // Devuelve solo los datos del usuario.
+        } else {
+          return null;
         }
       },
     }),
   ],
   session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 días en segundos
-    updateAge: 24 * 60 * 60,   // Refrescar cada 24 horas
+    strategy: "jwt", // Usando JWT para la sesión
+    maxAge: 1000 * 24 * 60 * 60, // La sesión durará 30 días
+    updateAge: 24 * 60 * 60,   // Actualiza la cookie cada 24 horas
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.user = user;
+        token.user = user;  // Guarda los datos del usuario en el JWT
       }
-      
+
+      // Si no tiene expiración, establecerla a 30 días (o puedes ajustarlo a más tiempo si lo prefieres)
       if (!token.exp) {
-        token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60;
+        token.exp = Math.floor(Date.now() / 1000) + (1000 * 24 * 60 * 60); // Expiración de 30 días
       }
 
       return token;
     },
     async session({ session, token }) {
-      session.user = token.user;
+      session.user = token.user;  // Pasa los datos del usuario a la sesión
       return session;
     },
   },
   pages: {
-    signIn: "/login", // Página de login personalizada
-    error: "/login", // Redirige a login si hay error
+    signIn: "/login",  // Redirige a la página de login si no está autenticado
   },
 });
