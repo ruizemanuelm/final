@@ -27,7 +27,7 @@ export default NextAuth({
   ],
   session: {
     strategy: "jwt", // Usando JWT para la sesión
-    maxAge: 30 * 24 * 60 * 60, // La sesión durará 30 días
+    maxAge: 1000 * 24 * 60 * 60, // La sesión durará 30 días
     updateAge: 24 * 60 * 60,   // Actualiza la cookie cada 24 horas
   },
   callbacks: {
@@ -38,7 +38,7 @@ export default NextAuth({
 
       // Si no tiene expiración, establecerla a 30 días (o puedes ajustarlo a más tiempo si lo prefieres)
       if (!token.exp) {
-        token.exp = Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60); // Expiración de 30 días
+        token.exp = Math.floor(Date.now() / 1000) + (1000 * 24 * 60 * 60); // Expiración de 30 días
       }
 
       return token;

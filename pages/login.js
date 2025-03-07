@@ -30,37 +30,58 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
   
-    // Intenta iniciar sesión
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      contrasena,
-    });
-  
-    // Si hay un error en el login
-    if (result.error) {
-      setError("Error al iniciar sesión");
-  
-      // Muestra una alerta de error con SweetAlert2
-      Swal.fire({
-        title: "Error",
-        text: "Hubo un problema al iniciar sesión. Verifica tus datos.",
-        icon: "error",
-        confirmButtonText: "Aceptar",
+    try {
+      // Realiza el fetch hacia el backend
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          contrasena: contrasena,
+        }),
       });
-    } else {
-      // Si el login es exitoso, redirige al usuario
-      router.push("/");
   
-      // Muestra una alerta de éxito con SweetAlert2
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Error al iniciar sesión");
+      }
+  
+      // Si el backend valida el login, utiliza "NextAuth" para manejar la sesión
+      const result = await signIn("credentials", {
+        redirect: false, // No redirige automáticamente
+        email: email,
+        contrasena: contrasena,
+      });
+  
+      if (result.error) {
+        throw new Error("Error al guardar la sesión con NextAuth");
+      }
+  
+      // Mostrar alerta de éxito
       Swal.fire({
         title: "Bienvenido",
         text: "Has iniciado sesión con éxito.",
         icon: "success",
         confirmButtonText: "Aceptar",
       });
+  
+      // Redirigir al usuario a otra página
+      router.push("/");
+  
+    } catch (error) {
+      setError(error.message);
+  
+      // Mostrar alerta de error
+      Swal.fire({
+        title: "Error",
+        text: error.message || "No se pudo iniciar sesión. Por favor, inténtalo de nuevo.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
+  
 
   return (
     <SimpleGrid

@@ -19,7 +19,6 @@ export function Categorias() {
 
     fetchCategories();
   }, []);
-console.log("categorias:", categorias);
 
   return (
     <SimpleGrid cols={{ base: 1,sm:2, md: 4 }} gap="lg">

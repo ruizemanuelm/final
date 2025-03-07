@@ -15,6 +15,8 @@ import {
 import { CardProductos } from "../components/cardProductos";
 import { useRouter } from "next/router";
 import { IconTrash } from "@tabler/icons-react";
+import Carrito from "./carrito";
+import { useSession } from "next-auth/react";
 
 const Productos = () => {
   const router = useRouter();
@@ -23,6 +25,8 @@ const Productos = () => {
   const [loading, setLoading] = useState(true);
   const [carrito, setCarrito] = useState([]); // Estado para el carrito
   const [carritoVisible, setCarritoVisible] = useState(false); // Estado para manejar la visibilidad del carrito
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -61,7 +65,6 @@ const Productos = () => {
     }
   }, [router.query]);
 
-  console.log(filteredProducts);
 
   const agregarAlCarrito = (producto) => {
     setCarrito((prevCarrito) => {
@@ -95,6 +98,14 @@ const Productos = () => {
       prevCarrito.filter((item) => item._id !== productoId)
     );
   };
+  
+  const finalizarCompra = () => {
+    router.push({
+      pathname: "/carrito",
+      query: { carrito: JSON.stringify(carrito) }, 
+    });
+  };
+  
 
   return (
     <>
@@ -362,7 +373,7 @@ const Productos = () => {
                     <Divider my="sm" />
                   </div>
               ))}
-              <Button color="grape.9" fullWidth>
+              <Button color="grape.9" fullWidth onClick={finalizarCompra} >
                 Finalizar Compra
               </Button>
               </>
