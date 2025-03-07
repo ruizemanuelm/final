@@ -9,7 +9,7 @@ export function Categorias() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${baseUrl}/api/categories`);
+        const response = await fetch(`${baseUrl}api/categories`);
         const data = await response.json();
         setCategorias(data);
       } catch (error) {

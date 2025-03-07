@@ -32,7 +32,7 @@ const Login = () => {
   
     try {
       // Realiza el fetch hacia el backend
-      const response = await fetch(`${baseUrl}/api/users/login`, {
+      const response = await fetch(`${baseUrl}api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

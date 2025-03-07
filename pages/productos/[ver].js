@@ -38,7 +38,7 @@ const Ver = () => {
     const fetchProducto = async () => {
       try {
         const response = await fetch(
-          `${baseUrl}/api/products/${ver}`
+          `${baseUrl}api/products/${ver}`
         );
 
         if (!response.ok) {

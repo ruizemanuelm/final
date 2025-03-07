@@ -32,7 +32,7 @@ const Productos = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await fetch(`${baseUrl}/api/products`);
+        const response = await fetch(`${baseUrl}api/products`);
         if (!response.ok) {
           throw new Error("No se pudieron obtener los productos");
         }

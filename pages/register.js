@@ -40,7 +40,7 @@ import { useState } from "react";
     const handleRegister = async () => {
   
       try {
-        const response = await fetch(`${baseUrl}/api/users/register`, {
+        const response = await fetch(`${baseUrl}api/users/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(
