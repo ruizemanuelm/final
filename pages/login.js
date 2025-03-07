@@ -55,7 +55,7 @@ const Login = () => {
       });
   
       if (result.error) {
-        throw new Error("Error al guardar la sesión con NextAuth");
+        console.log("Error al iniciar sesión:", result.error);
       }
   
       // Mostrar alerta de éxito
