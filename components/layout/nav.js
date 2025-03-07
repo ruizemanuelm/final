@@ -16,6 +16,7 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./nav.module.css";
 import { signOut, useSession } from "next-auth/react";
 import { IconChevronRight, IconLogout } from "@tabler/icons-react";
+import { useState } from "react";
 
 const links = [
   { link: "/inicio", label: "Inicio" },
@@ -55,10 +56,7 @@ export function Navbar() {
   }, []);
 
 const cerrarSesion = async () => {
-// Eliminar los datos del usuario del localStorage
 localStorage.removeItem("user");
-
-// Redirigir a la página de inicio de sesión
 router.push("/login"); 
 };
   return (

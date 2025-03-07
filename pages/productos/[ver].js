@@ -4,11 +4,9 @@ import {
   Title,
   Text,
   Loader,
-  Card,
   Image,
   Flex,
   Grid,
-  Badge,
   Group,
   Button,
   Container,
@@ -30,6 +28,16 @@ const Ver = () => {
   const [error, setError] = useState(null);
   const usuario = session?.user?.usuario;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
 
 
   useEffect(() => {
@@ -64,7 +72,7 @@ const Ver = () => {
   const comprar = () => {
     const usuario = session?.user?.usuario;
 
-    if (!usuario) {
+    if (user == null) {
       // Si el usuario no está autenticado, mostrar SweetAlert
       Swal.fire({
         title: "¿Deseas iniciar sesión para comprar?",
