@@ -16,7 +16,7 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./nav.module.css";
 import { signOut, useSession } from "next-auth/react";
 import { IconChevronRight, IconLogout } from "@tabler/icons-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
   { link: "/inicio", label: "Inicio" },
