@@ -45,13 +45,21 @@ export function Navbar() {
   console.log("sess", session);
   const usuario = session?.user?.usuario;
 
-// Función para manejar el logout
-const cerrarSesion = async () => {
-  // Realiza el logout sin redirigir automáticamente
-  await signOut({ redirect: false });
+  const [user, setUser] = useState(null);
 
-  // Redirige manualmente al inicio
-  window.location.href = "/";
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+const cerrarSesion = async () => {
+// Eliminar los datos del usuario del localStorage
+localStorage.removeItem("user");
+
+// Redirigir a la página de inicio de sesión
+router.push("/login"); 
 };
   return (
     <header className={classes.header}>
@@ -75,7 +83,7 @@ const cerrarSesion = async () => {
 
         {/* Campo de búsqueda */}
         <Group visibleFrom="sm">
-          {session === null || usuario === undefined ? (
+          {user === null || usuario === undefined ? (
             <Button variant="default" component="a" href="/login">
               Iniciar sesión
             </Button>
@@ -86,11 +94,11 @@ const cerrarSesion = async () => {
                 <Avatar color="initials" radius="xl" />
                 <div style={{ flex: 1 }}>
                   <Text size="sm" fw={500}>
-                    {usuario.nombre}
+                    {user.nombre}
                   </Text>
 
                   <Text c="dimmed" size="xs">
-                    {usuario.email}
+                    {user.email}
                   </Text>
                 </div>
 
