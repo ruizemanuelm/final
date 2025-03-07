@@ -73,7 +73,7 @@ export function Navbar() {
         <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
           {items}
         </Group>
-
+        <Text hiddenFrom="sm" c={"grape"} >NEON PHANTOM</Text>
         {/* Campo de búsqueda */}
         <Group visibleFrom="sm">
           {user === null? (
