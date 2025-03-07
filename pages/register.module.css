@@ -1,7 +1,5 @@
   .form {
     border-right: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
-    max-width: 450px;
-    width: 100%;
   
     @media (max-width: $mantine-breakpoint-sm) {
       max-width: 100%;

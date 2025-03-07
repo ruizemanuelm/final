@@ -197,7 +197,7 @@ const Productos = () => {
             Explora nuestra variedad de gabinetes para PC.
           </Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -217,7 +217,7 @@ const Productos = () => {
             Encuentra las mejores memorias RAM para tu PC.
           </Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -235,7 +235,7 @@ const Productos = () => {
           </Title>
           <Text ta={"center"}>Encuentra procesadores potentes para tu PC.</Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -253,7 +253,7 @@ const Productos = () => {
           </Title>
           <Text ta={"center"}>Teclados mecánicos, inalámbricos y más.</Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -273,7 +273,7 @@ const Productos = () => {
             Mouse ergonómicos y de alto rendimiento para gaming y oficina.
           </Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -292,7 +292,7 @@ const Productos = () => {
             Auriculares de alta calidad para gaming y música.
           </Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -309,7 +309,7 @@ const Productos = () => {
           </Title>
           <Text ta={"center"}>Encuentra notebooks de última generación.</Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
@@ -326,7 +326,7 @@ const Productos = () => {
           </Title>
           <Text ta={"center"}>Almacenamiento SSD, HDD y más.</Text>
           <Container size="xl" my={20}>
-            <SimpleGrid cols={4}>
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
               {filteredProducts.map((product) => (
                 <CardProductos
                   key={product._id}
