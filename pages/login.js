@@ -29,7 +29,6 @@ const Login = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const handleLogin = async (e) => {
     e.preventDefault();
-  
     try {
       // Realiza el fetch hacia el backend
       const response = await fetch(`${baseUrl}api/users/login`, {
@@ -46,18 +45,6 @@ const Login = () => {
       if (!response.ok) {
         console.error("Error al iniciar sesión:", data.error);
       }
-  
-      // Si el backend valida el login, utiliza "NextAuth" para manejar la sesión
-      const result = await signIn("credentials", {
-        redirect: false, // No redirige automáticamente
-        email: email,
-        contrasena: contrasena,
-      });
-  
-      if (result.error) {
-        console.log("Error al iniciar sesión:", result.error);
-      }
-  
       // Mostrar alerta de éxito
       Swal.fire({
         title: "Bienvenido",
