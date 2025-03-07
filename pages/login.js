@@ -11,7 +11,7 @@ import {
   Title,
 } from "@mantine/core";
 import classes from "./login.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
