@@ -79,7 +79,7 @@ router.push("/login");
 
         {/* Campo de búsqueda */}
         <Group visibleFrom="sm">
-          {user === null || usuario === undefined ? (
+          {user === null? (
             <Button variant="default" component="a" href="/login">
               Iniciar sesión
             </Button>
