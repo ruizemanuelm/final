@@ -44,7 +44,7 @@ const Login = () => {
       const data = await response.json();
   
       if (!response.ok) {
-        throw new Error(data.error || "Error al iniciar sesión");
+        console.error("Error al iniciar sesión:", data.error);
       }
   
       // Si el backend valida el login, utiliza "NextAuth" para manejar la sesión
