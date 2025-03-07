@@ -20,9 +20,17 @@ const Login = () => {
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(null);
   const router = useRouter();
+  const [user, setUser] = useState(null);
 
-  if (session) {
-    router.push("/"); // Redirige si ya está autenticado
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser)); 
+      }
+    }, []); 
+
+  if (user != null) {
+    router.push("/");
   }
  
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
