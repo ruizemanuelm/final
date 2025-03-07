@@ -53,7 +53,7 @@ export function Navbar() {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  }, [user]);
+  }, []);
 
 const cerrarSesion = async () => {
 localStorage.removeItem("user");
