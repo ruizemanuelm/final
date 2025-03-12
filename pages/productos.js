@@ -19,7 +19,7 @@ import Carrito from "./carrito";
 
 const Productos = () => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("Monitores");
+  const [activeTab, setActiveTab] = useState("monitores");
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [carrito, setCarrito] = useState([]); 
