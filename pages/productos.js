@@ -19,7 +19,7 @@ import Carrito from "./carrito";
 
 const Productos = () => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("monitores");
+  const [activeTab, setActiveTab] = useState("Monitores");
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [carrito, setCarrito] = useState([]); 
@@ -45,15 +45,13 @@ const Productos = () => {
   }, []);
 
   // Función que verifica si hay productos para la categoría activa
-  const getFilteredProducts = () => {
-    if (productos.length > 0) {
-      return productos.filter(
-        (product) => product.categoria.titulo.toLowerCase() === activeTab
-      );
-    } else {
-      return []; // Si no hay productos, retorna un array vacío
-    }
-  };
+const getFilteredProducts = () => {
+  return productos.filter(
+    (product) =>
+      product.categoria?.titulo?.toLowerCase().trim() === activeTab.toLowerCase().trim()
+  );
+};
+
 
   const filteredProducts = getFilteredProducts();
 
