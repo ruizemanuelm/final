@@ -48,7 +48,7 @@ const Contactos = () => {
 
           <form
             className={classes.form}
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <Text fz="lg" fw={700} className={classes.title}>
               Contáctanos
@@ -58,8 +58,8 @@ const Contactos = () => {
               <SimpleGrid cols={{ base: 1, sm: 2 }}>
                 <TextInput label="Nombre" placeholder="" required/>
                 <TextInput label="Apellido" placeholder="" required/>
-                <TextInput label="Teléfono" placeholder="" required />
-                <TextInput label="Email" placeholder="" required />
+                <TextInput type="number" label="Teléfono" placeholder="" required />
+                <TextInput type="email" label="Email" placeholder="" required />
               </SimpleGrid>
 
               <Textarea
