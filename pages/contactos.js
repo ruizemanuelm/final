@@ -24,12 +24,13 @@ const Contactos = () => {
     const apellido = form.elements["apellido"].value;
     const email = form.elements["email"].value;
 
-    // Muestra el Sweet Alert con el mensaje personalizado
     Swal.fire({
       icon: "success",
       title: "¡Gracias por comunicarte con nosotros!",
       text: `Hola ${nombre} ${apellido}, hemos recibido tu mensaje. ¡Nos pondremos en contacto contigo pronto!`,
       confirmButtonColor: "#8e44ad",
+    }).then(() => {
+      form.reset();
     });
   };
 

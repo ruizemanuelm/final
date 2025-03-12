@@ -24,7 +24,7 @@ export function Categorias() {
     <SimpleGrid cols={{ base: 1,sm:2, md: 4 }} gap="lg">
       {categorias.map((categoria, index) => (
         <Card
-        display={categoria.titulo == "Almacenamiento" ? "none": "block"}
+        display={categoria.titulo == "almacenamiento" ? "none": "block"}
           key={index}
           p="lg"
           shadow="lg"

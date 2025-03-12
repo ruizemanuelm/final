@@ -52,6 +52,8 @@ import { useEffect, useState } from "react";
             title: "Gracias por tu compra",
             text: "Puedes retirarlo en nuestra sucursal: Santiago del estero 300, san Miguel de Tucuman",
             icon: "success",
+      }).then(() => {
+        router.push("/productos");
           });
         }
       });
