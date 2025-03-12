@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import classes from "./contactos.module.css";
 import { ContactIconsList } from "../components/contactoslista";
+import Swal from "sweetalert2";
 
 const Contactos = () => {
 
@@ -56,10 +57,10 @@ const Contactos = () => {
 
             <div className={classes.fields}>
               <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                <TextInput label="Nombre" placeholder="" required/>
-                <TextInput label="Apellido" placeholder="" required/>
-                <TextInput type="number" label="Teléfono" placeholder="" required />
-                <TextInput type="email" label="Email" placeholder="" required />
+                <TextInput label="Nombre" name="nombre" placeholder="" required/>
+                <TextInput label="Apellido" name="apellido" placeholder="" required/>
+                <TextInput type="number" name="telefono" label="Teléfono" placeholder="" required />
+                <TextInput type="email" name="email" label="Email" placeholder="" required />
               </SimpleGrid>
 
               <Textarea
