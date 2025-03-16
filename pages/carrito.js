@@ -60,7 +60,6 @@ import { useEffect, useState } from "react";
     // };
 
     const handleComprar = () => {
-      router.push("/productos/compras")
       router.push({
         pathname: "/productos/compras",
         query: { carrito: JSON.stringify(carrito) }, 
