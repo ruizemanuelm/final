@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import classes from "./compras.module.css";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 const data = [
   {
@@ -64,7 +65,19 @@ function Compras() {
   console.log("carr", carrito);
 
   const handleComprar = () => {
-    router.push("/productos/compras");
+    if (value) {
+      router.push({
+        pathname: "/productos/metodos",
+        query: { carrito: JSON.stringify(carrito) }, 
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Debes elegir una opción para continuar",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+    }
   };
 
   return (
