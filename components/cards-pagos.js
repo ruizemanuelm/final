@@ -75,7 +75,7 @@ const CardsPagos = () => {
         <item.icon size={30} stroke={1.5} />
       </Group>
       <Center>
-        <Image src={item.imagen} h={80} />
+        <Image title={"Tarjeta "+item.title} src={item.imagen} h={80} />
       </Center>
     </Paper>
     </Carousel.Slide>

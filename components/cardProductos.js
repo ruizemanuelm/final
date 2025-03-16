@@ -24,7 +24,7 @@ export function CardProductos({
     <Card withBorder radius="md" className={classes.card}>
       {/* Sección de imagen */}
       <Card.Section p={10} className={classes.image}>
-        <Image src={imagen} height={180} alt={nombre} />
+        <Image title={nombre} src={imagen} height={180} alt={nombre} />
       </Card.Section>
 
       {/* Título del producto */}

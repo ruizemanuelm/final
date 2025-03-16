@@ -37,27 +37,35 @@ import { useEffect, useState } from "react";
 
       console.log("carr",carrito);
       
+    // const handleComprar = () => {
+    //   Swal.fire({
+    //     title: "¿Estás seguro que deseas realizar esta compra?",
+    //     icon: "question",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Sí",
+    //     cancelButtonText: "No",
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       Swal.fire({
+    //         title: "Gracias por tu compra",
+    //         text: "Puedes retirarlo en nuestra sucursal: Santiago del estero 300, san Miguel de Tucuman",
+    //         icon: "success",
+    //   }).then(() => {
+    //     router.push("/productos");
+    //       });
+    //     }
+    //   });
+    // };
+
     const handleComprar = () => {
-      Swal.fire({
-        title: "¿Estás seguro que deseas realizar esta compra?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sí",
-        cancelButtonText: "No",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Gracias por tu compra",
-            text: "Puedes retirarlo en nuestra sucursal: Santiago del estero 300, san Miguel de Tucuman",
-            icon: "success",
-      }).then(() => {
-        router.push("/productos");
-          });
-        }
+      router.push("/productos/compras")
+      router.push({
+        pathname: "/productos/compras",
+        query: { carrito: JSON.stringify(carrito) }, 
       });
-    };
+    }
   
     return (
       <Container size={"lg"}>
