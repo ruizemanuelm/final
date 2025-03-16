@@ -50,6 +50,22 @@ function Metodos() {
     </Radio.Card>
   ));
 
+    useEffect(() => {
+      if (router.query.carrito) {
+        const carritoRecibido = JSON.parse(router.query.carrito);
+        setCarrito(carritoRecibido);
+  
+        // Calcula el precio total de los productos
+        const total = carritoRecibido.reduce(
+          (acc, item) => acc + parseFloat(item.precioTotal),
+          0
+        );
+        setPrecioTotal(total.toFixed(2)); // Formatea a 2 decimales
+      }
+    }, [router.query.carrito]);
+  
+    console.log("carr", carrito);
+
       const handleComprar = () => {
         Swal.fire({
           title: "¿Estás seguro que deseas realizar esta compra?",
